@@ -1,10 +1,7 @@
 package com.google.maps.android.geojsonkmlabs.kml;
 
 import com.google.android.gms.maps.GoogleMap;
-import com.google.maps.android.geojsonkmlabs.Feature;
 import com.google.maps.android.geojsonkmlabs.Layer;
-import com.google.maps.android.geojsonkmlabs.Renderer;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -83,7 +80,6 @@ public class KmlLayer extends Layer {
      *
      * @return true if there are placemarks, false otherwise
      */
-
     public boolean hasPlacemarks() {
         return hasFeatures();
     }

@@ -1,5 +1,20 @@
-package com.google.maps.android.geojsonkmlabs;
+/*
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
+package com.google.maps.android.geojsonkmlabs;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
@@ -18,8 +33,10 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/*
-An abstraction that shares the common properties of KmlLayer and GeoJsonLayer
+/**
+ * An abstraction that shares the common properties of
+ * {@link com.google.maps.android.geojsonkmlabs.kml.KmlLayer KmlLayer} and
+ * {@link com.google.maps.android.geojsonkmlabs.geojson.GeoJsonLayer GeoJsonLayer}
  */
 public abstract class Layer {
 
@@ -29,14 +46,18 @@ public abstract class Layer {
      * Adds the KML data to the map
      */
     protected void addKMLToMap() throws IOException, XmlPullParserException {
-        ((KmlRenderer)mRenderer).addLayerToMap();
+        if (mRenderer instanceof KmlRenderer){
+            ((KmlRenderer) mRenderer).addLayerToMap();
+        }
     }
 
     /**
      * Adds GeoJson data to the map
      */
     protected void addGeoJsonToMap() {
-        ((GeoJsonRenderer)mRenderer).addLayerToMap();
+        if (mRenderer instanceof GeoJsonRenderer) {
+            ((GeoJsonRenderer) mRenderer).addLayerToMap();
+        }
     }
 
     /**
@@ -44,9 +65,9 @@ public abstract class Layer {
      */
     public void removeLayerFromMap() {
         if (mRenderer instanceof GeoJsonRenderer) {
-            ((GeoJsonRenderer)mRenderer).removeLayerFromMap();
+            ((GeoJsonRenderer) mRenderer).removeLayerFromMap();
         } else if (mRenderer instanceof KmlRenderer){
-            ((KmlRenderer)mRenderer).removeLayerFromMap();
+            ((KmlRenderer) mRenderer).removeLayerFromMap();
         }
     }
 
@@ -104,7 +125,6 @@ public abstract class Layer {
                 }
             }
         });
-
     }
 
     /**
@@ -183,7 +203,7 @@ public abstract class Layer {
      */
     protected boolean hasContainers() {
         if (mRenderer instanceof KmlRenderer) {
-            return ((KmlRenderer)mRenderer).hasNestedContainers();
+            return ((KmlRenderer) mRenderer).hasNestedContainers();
         }
         return false;
     }
@@ -195,7 +215,7 @@ public abstract class Layer {
      */
     protected Iterable<KmlContainer> getContainers() {
         if (mRenderer instanceof KmlRenderer) {
-            return ((KmlRenderer)mRenderer).getNestedContainers();
+            return ((KmlRenderer) mRenderer).getNestedContainers();
         }
         return null;
     }
@@ -207,7 +227,7 @@ public abstract class Layer {
      */
     protected Iterable<KmlGroundOverlay> getGroundOverlays() {
         if (mRenderer instanceof KmlRenderer) {
-            return ((KmlRenderer)mRenderer).getGroundOverlays();
+            return ((KmlRenderer) mRenderer).getGroundOverlays();
         }
         return null;
     }
@@ -247,7 +267,6 @@ public abstract class Layer {
      */
     protected void addFeature(Feature feature){
         mRenderer.addFeature(feature);
-
     }
 
     /**

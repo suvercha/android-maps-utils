@@ -1,3 +1,19 @@
+/*
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.maps.android.geojsonkmlabs;
 
 import android.content.Context;
@@ -45,8 +61,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-/*
-An abstraction that shares the common properties of KmlRenderer and GeoJsonRenderer
+/**
+ * An abstraction that shares the common properties of
+ * {@link com.google.maps.android.geojsonkmlabs.kml.KmlRenderer KmlRenderer} and
+ * {@link com.google.maps.android.geojsonkmlabs.geojson.GeoJsonRenderer GeoJsonRenderer}
  */
 public class Renderer {
 
@@ -101,7 +119,6 @@ public class Renderer {
         mDefaultLineStringStyle = null;
         mDefaultPolygonStyle = null;
         mContainerFeatures = new BiMultiMap<>();
-
     }
 
     /**
@@ -299,7 +316,6 @@ public class Renderer {
         mFeatures.put(feature, object);
     }
 
-
     /**
      * Adds mStyles to the mStylesRenderer
      */
@@ -424,8 +440,8 @@ public class Renderer {
                     String placemarkId = feature.getId();
                     Geometry geometry = feature.getGeometry();
                     KmlStyle style = getPlacemarkStyle(placemarkId);
-                    KmlStyle inlineStyle = ((KmlPlacemark)feature).getInlineStyle();
-                    mapObject = addKmlPlacemarkToMap((KmlPlacemark)feature, geometry, style, inlineStyle, isPlacemarkVisible);
+                    KmlStyle inlineStyle = ((KmlPlacemark) feature).getInlineStyle();
+                    mapObject = addKmlPlacemarkToMap((KmlPlacemark) feature, geometry, style, inlineStyle, isPlacemarkVisible);
                 } else {
                     mapObject = addGeoJsonFeatureToMap(feature, feature.getGeometry());
                 }
@@ -513,7 +529,6 @@ public class Renderer {
      */
     protected Object addKmlPlacemarkToMap(KmlPlacemark placemark, Geometry geometry, KmlStyle style,
                                           KmlStyle inlineStyle, boolean isVisible) {
-
         String geometryType = geometry.getGeometryType();
         boolean hasDrawOrder = placemark.hasProperty("drawOrder");
         float drawOrder = 0;
@@ -571,7 +586,6 @@ public class Renderer {
                 return addMultiGeometryToMap(placemark, (KmlMultiGeometry) geometry, style, inlineStyle,
                         isVisible);
         }
-
         return null;
     }
 
@@ -694,7 +708,6 @@ public class Renderer {
         }
     }
 
-
     /**
      * Adds all Geometry objects stored in the GeoJsonGeometryCollection onto the map.
      * Supports recursive GeometryCollections.
@@ -794,7 +807,7 @@ public class Renderer {
      */
     private ArrayList<Polyline> addMultiLineStringToMap(GeoJsonLineStringStyle lineStringStyle,
                                                         GeoJsonMultiLineString multiLineString) {
-        ArrayList<Polyline> polylines = new ArrayList<Polyline>();
+        ArrayList<Polyline> polylines = new ArrayList<>();
         for (GeoJsonLineString geoJsonLineString : multiLineString.getLineStrings()) {
             polylines.add(addLineStringToMap(lineStringStyle.toPolylineOptions(), geoJsonLineString));
         }

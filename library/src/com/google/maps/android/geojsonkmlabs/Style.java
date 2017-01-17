@@ -1,3 +1,19 @@
+/*
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.maps.android.geojsonkmlabs;
 
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -6,9 +22,12 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.Observable;
 
-/*
-An abstraction that shares the common properties of KmlStyle and GeoJsonLoneStringStyle,
-GeoJsonPointStyle and GeoJsonPolygonStyle
+/**
+ * An abstraction that shares the common properties of
+ * {@link com.google.maps.android.geojsonkmlabs.kml.KmlStyle KmlStyle},
+ * {@link com.google.maps.android.geojsonkmlabs.geojson.GeoJsonPointStyle GeoJsonPointStyle},
+ * {@link com.google.maps.android.geojsonkmlabs.geojson.GeoJsonLineStringStyle GeoJsonLineStringStyle}
+ * and {@link com.google.maps.android.geojsonkmlabs.geojson.GeoJsonPolygonStyle GeoJsonPolygonStyle}
  */
 public abstract class Style extends Observable {
 

@@ -5,7 +5,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.maps.android.geojsonkmlabs.Feature;
-import com.google.maps.android.geojsonkmlabs.Renderer;
 import com.google.maps.android.geojsonkmlabs.kml.KmlContainer;
 import com.google.maps.android.geojsonkmlabs.kml.KmlLayer;
 import com.google.maps.android.geojsonkmlabs.kml.KmlPlacemark;
@@ -37,7 +36,7 @@ public class KmlDemoActivity extends BaseDemoActivity {
             //retrieveFileFromResource();
             retrieveFileFromUrl();
         } catch (Exception e) {
-            Log.e("Exception caught frj", e.toString());
+            Log.e("Exception caught", e.toString());
             e.printStackTrace();
         }
     }
@@ -72,15 +71,10 @@ public class KmlDemoActivity extends BaseDemoActivity {
         for (LatLng latLng : polygon.getOuterBoundaryCoordinates()) {
             builder.include(latLng);
         }
-        try {
-            getMap().moveCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 1));
-        } catch (IllegalStateException e) {
-            int width = getResources().getDisplayMetrics().widthPixels;
-            int height = getResources().getDisplayMetrics().heightPixels;
-            getMap().moveCamera(
-                    CameraUpdateFactory.newLatLngBounds(builder.build(), width, height, 1));
 
-        }
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = getResources().getDisplayMetrics().heightPixels;
+        getMap().moveCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), width, height, 1));
     }
 
     private class DownloadKmlFile extends AsyncTask<String, Void, byte[]> {
@@ -115,7 +109,6 @@ public class KmlDemoActivity extends BaseDemoActivity {
                 kmlLayer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
                     @Override
                     public void onFeatureClick(Feature feature) {
-
                         Toast.makeText(KmlDemoActivity.this,
                                 "Feature clicked: " + feature.getId(),
                                 Toast.LENGTH_SHORT).show();

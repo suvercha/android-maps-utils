@@ -2,13 +2,9 @@ package com.google.maps.android.utils.demo;
 
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.geojsonkmlabs.Feature;
-import com.google.maps.android.geojsonkmlabs.Point;
-import com.google.maps.android.geojsonkmlabs.Renderer;
 import com.google.maps.android.geojsonkmlabs.geojson.GeoJsonFeature;
 import com.google.maps.android.geojsonkmlabs.geojson.GeoJsonLayer;
-import com.google.maps.android.geojsonkmlabs.geojson.GeoJsonPoint;
 import com.google.maps.android.geojsonkmlabs.geojson.GeoJsonPointStyle;
 
 import org.json.JSONException;
@@ -23,7 +19,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.HashMap;
 
 public class GeoJsonDemoActivity extends BaseDemoActivity {
 
@@ -95,7 +90,7 @@ public class GeoJsonDemoActivity extends BaseDemoActivity {
                 pointStyle.setSnippet("Earthquake occured " + feature.getProperty("place"));
 
                 // Assign the point style to the feature
-                ((GeoJsonFeature)feature).setPointStyle(pointStyle);
+                ((GeoJsonFeature) feature).setPointStyle(pointStyle);
             }
         }
     }
@@ -143,7 +138,6 @@ public class GeoJsonDemoActivity extends BaseDemoActivity {
 
         addColorsToMarkers(layer);
         layer.addLayerToMap();
-
         // Demonstrate receiving features via GeoJsonLayer clicks.
         layer.setOnFeatureClickListener(new GeoJsonLayer.GeoJsonOnFeatureClickListener() {
             @Override
