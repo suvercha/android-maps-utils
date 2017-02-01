@@ -34,7 +34,7 @@ public class LineString implements Geometry<List<LatLng>> {
     /**
      * Creates a new LineString object
      *
-     * @param coordinates array of coordinates
+     * @param coordinates list of coordinates
      */
     public LineString(List<LatLng> coordinates) {
         if (coordinates == null) {
